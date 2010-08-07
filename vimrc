@@ -2,8 +2,8 @@ syntax enable
 
 set tabstop=4      "width of a tab indent
 set shiftwidth=4   "shift width is 4 spaces
-
 set smarttab       "use shiftwidth instead of tabstop for inserting <TAB>s
+
 set softtabstop=4  "backspace deletes this many space characters (treats as a tab)
 
 set expandtab      "expand tabs into spaces
@@ -11,10 +11,14 @@ set smartindent    "smart indent = predictive indention based on a rough C synta
 
 set textwidth=78   " length to wrap lines to
 
+" enable file detection and syntax highlighting
 filetype plugin indent on
 syntax on
 
-" use Ctrl-N/P to move buffers
+" line/column in bottom-right
+set ruler
+
+" easy next/previous buffer
 nnoremap <silent> <C-N> :next<Enter>
 nnoremap <silent> <C-P> :prev<Enter> 
 
@@ -24,10 +28,23 @@ noremap <silent> <C-Right> :tabnext<Enter>
 noremap <silent> <C-Up> :tabnew<Enter>
 noremap <silent> <C-Down> :tabclose<Enter>
 
+" search as you type
+set incsearch
+
+" case-sensitive searching only when search string contains capitals
+set smartcase
+
+" keep 2 lines and 2 cols of context around the cursor
+set scrolloff=2
+set sidescrolloff=2
+
+" file tab-completion does longest common prefix, then lists (like bash)
+set wildmode=longest,list
+
 " confirmation save/discard on exit
 set confirm
 
-" enable tab line in tab-editing
+" enable tab line only if there are at least 2 tabs to show
 set showtabline=1
 
 " show command being entered on bottom line - right
@@ -35,13 +52,14 @@ set showcmd
 
 " Automatically create folds on syntax
 set foldmethod=syntax
+set nofoldenable        "don't fold by default
 
 " Space will toggle folds!
 nnoremap <space> za
 
 " Use english for spellchecking, but don't spellcheck by default
 if version >= 700
-   set spl=en spell
+   set spl=en_us spell
    set nospell
 endif
 
@@ -73,7 +91,7 @@ set number
 " Lookup ctags "tags" file up the directory, until one is found
 set tags=tags;/
 
-" F5 -> make
+" F5 does make
 map <F5> :make<CR>
 
 " make html/css easier to deal with
@@ -84,3 +102,14 @@ autocmd BufReadPost *
      \ if line("'\"") > 0 && line("'\"") <= line("$") |
      \   exe "normal! g`\"" |
      \ endif
+
+" make % match tags like <tr><td><script> <?php etc
+source ~/.vim/ftplugin/matchit.vim
+
+" language-specific files
+autocmd FileType java :compiler javac
+autocmd BufRead *.py set smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class makeprg=python\ %
+autocmd FileType html,css set tabstop=2
+
+" ghc on haskell files
+au Bufenter *.hs compiler ghc
