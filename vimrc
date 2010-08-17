@@ -1,5 +1,10 @@
 syntax enable
 
+let mapleader = ","
+
+" longer history than default (20)
+set history=100
+
 set tabstop=4      "width of a tab indent
 set shiftwidth=4   "shift width is 4 spaces
 set smarttab       "use shiftwidth instead of tabstop for inserting <TAB>s
