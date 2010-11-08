@@ -3,15 +3,25 @@
 set -e
 
 echo "Installing... ~/.vimrc"
-install --mode=644 --backup=t -D vimrc ~/.vimrc
+if [ ! -f ~/.vimrc ]; then
+    ln -s `pwd`/vimrc ~/.vimrc
+else
+    echo "~/.vimrc already exists... preserving."
+fi
 
 echo "Installing... ~/.vim/"
-pushd vim
-find . -type f -exec install -D {} ~/.vim/{} \;
-popd
+if [ ! -d ~/.vim/ ]; then
+    ln -s `pwd`/vim ~/.vim
+else
+    echo "~/.vim/ already exists... preserving."
+fi
 
 echo "Installing... ~/.bash_aliases"
-install --mode=644 --backup=t -D bash_aliases ~/.bash_aliases
+if [ ! -f ~/.bash_aliases ]; then
+    ln -s `pwd`/bash_aliases ~/.bash_aliases
+else
+    echo "~/.bash_aliases already exists... preserving."
+fi
 
 echo "done."
 exit
