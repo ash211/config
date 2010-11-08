@@ -33,6 +33,9 @@ noremap <silent> <C-Right> :tabnext<Enter>
 noremap <silent> <C-Up> :tabnew<Enter>
 noremap <silent> <C-Down> :tabclose<Enter>
 
+" use - to take you back to the File Explorer
+noremap <silent> - :Ex<Enter>
+
 " search as you type
 set incsearch
 
@@ -113,8 +116,8 @@ source ~/.vim/ftplugin/matchit.vim
 
 " language-specific files
 autocmd FileType java :compiler javac
-autocmd BufRead *.py set smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class makeprg=python\ %
-autocmd FileType html,css set tabstop=2
+autocmd BufRead *.py set smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class makeprg=python\ % foldmethod=indent
+autocmd FileType html,css set tabstop=2 sw=2 sts=2
 
 " ghc on haskell files
 au Bufenter *.hs compiler ghc
