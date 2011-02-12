@@ -24,7 +24,7 @@ syntax on
 set ruler
 
 " Use ,I to show invisible characters
-noremap <silent> <leader>I :set invlist<Enter>
+noremap <silent> <leader>i :set invlist<Enter>
 
 " easy next/previous buffer
 nnoremap <silent> <C-N> :next<Enter>
