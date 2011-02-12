@@ -3,7 +3,7 @@
 set -e
 
 echo "Installing... ~/.vimrc"
-if [ ! -f ~/.vimrc ]; then
+if [ ! -e ~/.vimrc ]; then
     ln -s `pwd`/vimrc ~/.vimrc
 else
     echo "~/.vimrc already exists... preserving."
@@ -17,14 +17,14 @@ else
 fi
 
 echo "Installing... ~/.bash_aliases"
-if [ ! -f ~/.bash_aliases ]; then
+if [ ! -e ~/.bash_aliases ]; then
     ln -s `pwd`/bash_aliases ~/.bash_aliases
 else
     echo "~/.bash_aliases already exists... preserving."
 fi
 
 echo "Installing... ~/.gitconfig"
-if [ ! -f ~/.gitconfig ]; then
+if [ ! -e ~/.gitconfig ]; then
     ln -s `pwd`/gitconfig ~/.gitconfig
 else
     echo "~/.gitconfig already exists... preserving."
