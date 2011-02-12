@@ -26,6 +26,9 @@ set ruler
 " Use ,I to show invisible characters
 noremap <silent> <leader>i :set invlist<Enter>
 
+" Use ,g to grade the current line
+noremap <silent> <leader>g V:!gr<Enter>
+
 " easy next/previous buffer
 nnoremap <silent> <C-N> :next<Enter>
 nnoremap <silent> <C-P> :prev<Enter> 
