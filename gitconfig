@@ -13,3 +13,7 @@
     lg = log --graph --oneline
     lgs = log --oneline
     st = status
+[color]
+    branch = auto
+    diff = auto
+    status = auto
