@@ -23,6 +23,9 @@ syntax on
 " line/column in bottom-right
 set ruler
 
+" Use ,I to show invisible characters
+noremap <silent> <leader>I :set invlist<Enter>
+
 " easy next/previous buffer
 nnoremap <silent> <C-N> :next<Enter>
 nnoremap <silent> <C-P> :prev<Enter> 
