@@ -23,5 +23,12 @@ else
     echo "~/.bash_aliases already exists... preserving."
 fi
 
+echo "Installing... ~/.gitconfig"
+if [ ! -f ~/.gitconfig ]; then
+    ln -s `pwd`/gitconfig ~/.gitconfig
+else
+    echo "~/.gitconfig already exists... preserving."
+fi
+
 echo "done."
 exit

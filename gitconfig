@@ -1,0 +1,15 @@
+[user]
+    name = Andrew Ash
+    email = ash211@gmail.com
+[merge]
+    tool = vimdiff
+[alias]
+    br = branch
+    ci = commit --verbose
+    co = checkout
+    cp = cherry-pick
+    dc = diff --cached
+    ds = diff --stat -r
+    lg = log --graph --oneline
+    lgs = log --oneline
+    st = status
