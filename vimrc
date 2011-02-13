@@ -80,6 +80,9 @@ if version >= 700
    set nospell
 endif
 
+" Use ,s to toggle spelling
+noremap <silent> <leader>s :set spell!<Enter>
+
 "{{{ Paste Toggle
 let paste_mode = 0 " 0 = normal, 1 = paste
 
