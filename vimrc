@@ -83,6 +83,9 @@ endif
 " Use ,s to toggle spelling
 noremap <silent> <leader>s :set spell!<Enter>
 
+" Use :W to save with sudo privs
+nnoremap <silent> :W :w !sudo tee % 2>&1 >/dev/null<Enter>
+
 "{{{ Paste Toggle
 let paste_mode = 0 " 0 = normal, 1 = paste
 
