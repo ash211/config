@@ -23,6 +23,9 @@ syntax on
 " line/column in bottom-right
 set ruler
 
+" Use ,w to show toggle wrap
+noremap <silent> <leader>w :set wrap!<Enter>
+
 " Use ,I to show invisible characters
 noremap <silent> <leader>i :set invlist<Enter>
 
