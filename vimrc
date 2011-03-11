@@ -74,9 +74,6 @@ set showcmd
 set foldmethod=syntax
 set nofoldenable        "don't fold by default
 
-" Space will toggle folds!
-nnoremap <space> za
-
 " Use english for spellchecking, but don't spellcheck by default
 if version >= 700
    set spl=en_us spell
