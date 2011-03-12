@@ -32,8 +32,8 @@ noremap <silent> <leader>i :set invlist<Enter>
 " Use ,g to grade the current line
 noremap <silent> <leader>g V:!gr<Enter>
 
-" Use ,l to toggle line numbers
-noremap <silent> <leader>l :set nonumber!<Enter>
+" Use ,n to toggle line numbers
+noremap <silent> <leader>n :set nonumber!<Enter>
 
 " easy next/previous buffer
 nnoremap <silent> <C-N> :next<Enter>
