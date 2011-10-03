@@ -105,6 +105,14 @@ nnoremap <silent> <F10> :call Paste_on_off()<CR>
 set pastetoggle=<F10>
 "}}}
 
+" ctrl-space does auto completion
+inoremap <expr> <C-Space> pumvisible() \|\| &omnifunc == '' ?
+\ "\<lt>C-n>" :
+\ "\<lt>C-x>\<lt>C-o><c-r>=pumvisible() ?" .
+\ "\"\\<lt>c-n>\\<lt>c-p>\\<lt>c-n>\" :" .
+\ "\" \\<lt>bs>\\<lt>C-n>\"\<CR>"
+imap <C-@> <C-Space>
+
 " Mouse abilities
 "set mouse=a
 
