@@ -144,3 +144,7 @@ autocmd FileType html,css set tabstop=2 sw=2 sts=2
 
 " ghc on haskell files
 au Bufenter *.hs compiler ghc
+
+" set haddock (haskell docs) browser and html dir
+let g:haddock_browser = "/usr/bin/chromium"
+let g:haddock_docdir = "/usr/share/doc/ghc/html/"
