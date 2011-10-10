@@ -149,6 +149,12 @@ autocmd BufReadPost *
 " TODO: load w/ pathogen
 "source ~/.vim/ftplugin/matchit.vim
 
+""" PLUGIN SETTINGS
+
+" Quicker toggle-commenting
+noremap <leader>/ :call NERDComment(0,"toggle")<cr>
+
+
 """ PER-COMPUTER SETTINGS
 
 " set haddock (haskell docs) browser and html dir
