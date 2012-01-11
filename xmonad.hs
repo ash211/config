@@ -37,7 +37,7 @@ main = do
   xmproc <- spawnPipe "xmobar ~/.xmobarrc"
   xmonad $ defaultConfig
     { terminal = "terminal"
-    , modMask = mod1Mask
+    , modMask = mod4Mask
     , focusFollowsMouse = True
     , borderWidth = 1
     , manageHook = myManageHook
@@ -46,11 +46,19 @@ main = do
                   { ppOutput = hPutStrLn xmproc
                   , ppTitle = xmobarColor "green" "" . shorten 100
                   }
-    } `additionalKeys`
-    [ ((mod4Mask, xK_l), spawn "xscreensaver-command -lock")
+    } `additionalKeys` myKeys
+
+myKeys =
+    [ ((modMask .|. shiftMask, xK_l), spawn "xscreensaver-command -lock")
     , ((0, xF86AudioMute), spawn "amixer -q set Master toggle")
     , ((0, xF86AudioLowerVolume), spawn "amixer -q set Master 5%-")
     , ((0, xF86AudioRaiseVolume), spawn "amixer -q set Master 5%+")
-    , ((mod1Mask, xK_p), spawn "dmenu_run")
-    , ((mod1Mask .|. shiftMask, xK_p), spawn "dmenu_run")
+    , ((modMask, xK_p), spawn "dmenu_run")
+    , ((modMask .|. shiftMask, xK_p), spawn "dmenu_run")
     ]
+    ++
+    [((m .|. modMask, k), windows $ f i)
+        | (i, k) <- zip (workspaces defaultConfig) [xK_1 .. xK_9]
+        , (f, m) <- [(W.view, 0), (W.shift, shiftMask)]
+    ]
+    where modMask = mod4Mask
