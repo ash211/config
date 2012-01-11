@@ -12,8 +12,8 @@
     cp = cherry-pick
     dc = diff --cached
     ds = diff --stat -r
-    lg = log --graph --oneline
-    lgs = log --oneline
+    lg = log --graph --oneline --decorate
+    lgs = log --oneline --decorate
     st = status
 [color]
     branch = auto
