@@ -36,7 +36,7 @@ main = do
   replace
   xmproc <- spawnPipe "xmobar ~/.xmobarrc"
   xmonad $ defaultConfig
-    { terminal ="xterm -rv -mb"
+    { terminal = "terminal"
     , modMask = mod1Mask
     , focusFollowsMouse = True
     , borderWidth = 1
