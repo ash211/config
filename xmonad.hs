@@ -15,7 +15,7 @@ xF86AudioRaiseVolume = 0x1008ff13
 xF86AudioLowerVolume = 0x1008ff11
 xF86AudioMute = 0x1008ff12
 
-myLayout = avoidStruts $ smartBorders $ tiled ||| Full
+myLayout = avoidStruts $ smartBorders $ tiled ||| Mirror tiled ||| Full
   where
     -- default tiling algorithm partitions the screen into two panes
     tiled   = Tall nmaster delta ratio
