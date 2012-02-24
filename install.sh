@@ -30,5 +30,12 @@ else
     echo "~/.gitconfig already exists... preserving."
 fi
 
+echo "Installing... ~/.tmux.conf"
+if [ ! -e ~/.tmux.conf ]; then
+    ln -s `pwd`/tmux.conf ~/.tmux.conf
+else
+    echo "~/.tmux.conf already exists... preserving."
+fi
+
 echo "done."
 exit
