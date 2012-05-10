@@ -7,8 +7,9 @@ Config { font = "-*-Fixed-Bold-R-Normal-*-13-*-*-*-*-*-*-*"
        , lowerOnStart = True
        , commands = [ Run Cpu ["-L","3","-H","50","--normal","green","--high","red"] 10
                     , Run Memory ["-t","Mem: <usedratio>%"] 20
-                    , Run Swap [] 20
+                    -- , Run Swap [] 20
                     , Run Date "%a %_d %b %H:%M:%S" "date" 5
+                    , Run Network "wlan0" ["-L","0","-H","32","--normal","green","--high","red"] 10
                     -- , Run Volume "default" "Master" [] 10
                     -- , Run Battery [] 50
                     , Run Battery ["-t", "Batt: <left>% <acstatus> <timeleft>",
@@ -22,5 +23,5 @@ Config { font = "-*-Fixed-Bold-R-Normal-*-13-*-*-*-*-*-*-*"
                     ]
        , sepChar = "%"
        , alignSep = "}{"
-       , template = "%StdinReader% }{ %cpu% %cpufreq% | %memory% * %swap% * %battery%   <fc=#ee9a00>%date%</fc>"
+       , template = "%StdinReader% }{ %wlan0% %cpu% %cpufreq% | %memory% %battery%   <fc=#ee9a00>%date%</fc>"
        }
