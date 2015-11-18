@@ -76,6 +76,7 @@ filetype plugin indent on
 autocmd FileType html,css set tabstop=2 sw=2 sts=2
 autocmd FileType java compiler javac
 autocmd FileType haskell compiler ghc
+autocmd FileType python set foldmethod=expr
 "autocmd FileType python set smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class makeprg=python\ % foldmethod=indent
 
 
@@ -154,9 +155,17 @@ autocmd BufReadPost *
 " Quicker toggle-commenting
 noremap <leader>/ :call NERDComment(0,"toggle")<cr>
 
+au FileType xml setlocal equalprg=xmllint\ --format\ --recover\ -\ 2>/dev/null
+
 
 """ PER-COMPUTER SETTINGS
 
 " set haddock (haskell docs) browser and html dir
 let g:haddock_browser = "/usr/bin/chromium"
 let g:haddock_docdir = "/usr/share/doc/ghc/html/"
+
+au BufReadCmd   *.jar,*.war,*.ear,*.sar,*.rar,*.par        call zip#Load(expand("<amatch>"))
+
+set mls=5
+
+vnoremap // y/<C-R>"<CR>
