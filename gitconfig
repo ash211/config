@@ -10,13 +10,18 @@
     ci = commit --verbose
     co = checkout
     cp = cherry-pick
-    dc = diff --cached
+    dc = diff --cached -M
     ds = diff --stat -r
     lg = log --graph --oneline --decorate
     lgs = log --oneline --decorate
     st = status
+    ff = pull --ff-only
     hlog = log --date-order --all --graph --format=\"%C(green)%h%Creset %C(yellow)%an%Creset %C(blue bold)%ar%Creset %C(red bold)%d%Creset%s\"
 [color]
     branch = auto
     diff = auto
     status = auto
+[branch]
+    autosetuprebase = always
+[push]
+    default = simple
