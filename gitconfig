@@ -6,7 +6,7 @@
 [merge]
     tool = vimdiff
 [alias]
-    br = branch
+    br = branch --sort=-committerdate
     ci = commit --verbose
     co = checkout
     cp = cherry-pick
@@ -19,6 +19,10 @@
     hlog = log --date-order --all --graph --format=\"%C(green)%h%Creset %C(yellow)%an%Creset %C(blue bold)%ar%Creset %C(red bold)%d%Creset%s\"
     hlogs = log --date-order --graph --format=\"%C(green)%h%Creset %C(yellow)%an%Creset %C(blue bold)%ar%Creset %C(red bold)%d%Creset%s\"
     change-commits = "!f() { VAR=$1; OLD=$2; NEW=$3; shift 3; git filter-branch --env-filter \"if [[ $`echo $VAR` = \\\"$OLD\\\" ]]; then export $VAR=\\\"$NEW\\\"; fi\" $@; }; f "
+    sign = commit --amend -S --no-edit
+    # from https://stackoverflow.com/a/14247783/120915
+    children = "!f() { git rev-list --all --not $1^@ --children | grep $(git rev-parse $1); }; f" # reachable children of a ref
+
 [color]
     branch = auto
     diff = auto
@@ -27,3 +31,17 @@
     autosetuprebase = always
 [push]
     default = simple
+    autoSetupRemote = true
+[commit]
+    verbose = true
+    gpgsign = true
+[tag]
+    gpgsign = true
+    forceSignAnnotated = true
+[core]
+    pager = delta --dark
+    fsmonitor = true
+[rebase]
+    autoStash = true
+[feature]
+    manyFiles = true
