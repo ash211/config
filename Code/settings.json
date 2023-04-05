@@ -1,0 +1,62 @@
+{
+    "sourcegraph.basePath": "/Volumes/git/",
+    "git.autofetch": true,
+    "terminal.integrated.fontFamily": "MesloLGS NF",
+    "terminal.integrated.env.osx": {
+        "EDITOR": "code -w",
+    },
+    "terminal.integrated.defaultProfile.osx": "zsh",
+    "editor.gotoLocation.multipleDefinitions": "goto",
+    "githubPullRequests.remotes": [
+        "origin",
+        "upstream",
+        "develop"
+    ],
+    "workbench.colorCustomizations": {    // Can customize each aspect
+        "[Default Dark+]": {               // Optional
+            "tab.activeBorderTop": "#0A84FF" // Active Tab Highlighting
+        }
+    },
+    "files.autoSave": "onWindowChange",
+    "explorer.excludeGitIgnore": true,
+    "git.useEditorAsCommitInput": false,
+    "git.branchPrefix": "aash/",
+    "git.branchProtection": [
+        "develop"
+    ],
+    "editor.codeActionsOnSave": {
+        "source.organizeImports": true,
+        "source.addMissingImports": true
+    }, 
+    "typescript.preferences.includePackageJsonAutoImports": "on",
+    "svgviewer.previewcolumn": "Active",
+    "svgviewer.enableautopreview": true,
+    "typescript.updateImportsOnFileMove.enabled": "never",
+    "githubPullRequests.pullBranch": "never",
+
+    // for https://stackoverflow.com/questions/39997022/show-all-warnings-and-errors-in-visual-studio-code
+    "eslint.lintTask.enable": true,
+    "editor.cursorSurroundingLines": 1,
+    "editor.renderLineHighlightOnlyWhenFocus": true,
+    // "typescript.inlayHints.variableTypes.enabled": true,
+    // "typescript.inlayHints.functionLikeReturnTypes.enabled": true,
+    "explorer.fileNesting.enabled": true,
+    "explorer.fileNesting.patterns": {
+        "*.tsx": "${capture}.ts, ${capture}.i18n.yml, ${capture}.module.scss, ${capture}.graphql"
+    },
+    "jest.autoRun": "off",
+    "[python]": {
+        "editor.formatOnType": true
+    },
+    "files.exclude": {
+        // Added for excessively high rg cpu usage. See:
+        "**/node_modules": true,
+
+        "**/.git": true,
+        "**/.svn": true,
+        "**/.hg": true,
+        "**/CVS": true,
+        "**/.DS_Store": true,
+        "**/Thumbs.db": true
+    }
+}
