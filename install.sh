@@ -37,5 +37,12 @@ else
     echo "~/.tmux.conf already exists... preserving."
 fi
 
+echo "Installing... ~/.zshrc"
+if [ ! -e ~/.zshrc ]; then
+    ln -s `pwd`/zshrc ~/.zshrc
+else
+    echo "~/.zshrc already exists... preserving."
+fi
+
 echo "done."
 exit
