@@ -22,6 +22,7 @@
     sign = commit --amend -S --no-edit
     # from https://stackoverflow.com/a/14247783/120915
     children = "!f() { git rev-list --all --not $1^@ --children | grep $(git rev-parse $1); }; f" # reachable children of a ref
+    uncommit = reset HEAD^
 
 [color]
     branch = auto
