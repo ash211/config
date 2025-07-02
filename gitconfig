@@ -3,33 +3,42 @@
     email = andrew@andrewash.com
 [core]
     editor = vim
+[column]
+    ui = auto
 [merge]
     tool = vimdiff
+    conflictstyle = zdiff3
 [alias]
     br = branch --sort=-committerdate
     ci = commit --verbose
     co = checkout
     cp = cherry-pick
+    d  = diff
     dc = diff --cached -M
+    dcs = diff --cached -M --stat
     ds = diff --stat -r
     lg = log --graph --oneline --decorate
     lgs = log --oneline --decorate
+    shows = show --stat
     st = status
     ff = pull --ff-only
-    hlog = log --date-order --all --graph --format=\"%C(green)%h%Creset %C(yellow)%an%Creset %C(blue bold)%ar%Creset %C(red bold)%d%Creset%s\"
+    hlog = log --date-order --exclude=refs/remotes/origin/roomba/* --exclude=refs/remotes/origin/elevator/* --all --graph --format=\"%C(green)%h%Creset %C(yellow)%an%Creset %C(blue bold)%ar%Creset %C(red bold)%d%Creset%s\"
     hlogs = log --date-order --graph --format=\"%C(green)%h%Creset %C(yellow)%an%Creset %C(blue bold)%ar%Creset %C(red bold)%d%Creset%s\"
     change-commits = "!f() { VAR=$1; OLD=$2; NEW=$3; shift 3; git filter-branch --env-filter \"if [[ $`echo $VAR` = \\\"$OLD\\\" ]]; then export $VAR=\\\"$NEW\\\"; fi\" $@; }; f "
     sign = commit --amend -S --no-edit
     # from https://stackoverflow.com/a/14247783/120915
     children = "!f() { git rev-list --all --not $1^@ --children | grep $(git rev-parse $1); }; f" # reachable children of a ref
     uncommit = reset HEAD^
-
+    mod = merge origin/develop
+    modc = merge origin/develop-cached
+    rod = rebase origin/develop
 [color]
     branch = auto
     diff = auto
     status = auto
 [branch]
     autosetuprebase = always
+    sort = -committerdate
 [push]
     default = simple
     autoSetupRemote = true
@@ -46,3 +55,20 @@
     autoStash = true
 [feature]
     manyFiles = true
+[filter "lfs"]
+    clean = git-lfs clean -- %f
+    smudge = git-lfs smudge -- %f
+    process = git-lfs filter-process
+    required = true
+[rerere]
+    enabled = true
+    autoupdate = true
+#[interactive]
+    #diffFilter = delta
+[diff]
+    algorithm = histogram
+    #colorMoved = plain
+    mnemonicPrefix = true
+    renames = true
+[init]
+    defaultBranch = develop
