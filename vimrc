@@ -2,8 +2,9 @@
 set nocompatible
 
 " Load the pathogen bundles in ~/.vim/bundle
-call pathogen#helptags()
-call pathogen#infect()
+" disable for now since I'm moving towards a slim vimrc
+"call pathogen#helptags()
+"call pathogen#infect()
 
 " Use comma for mapleader instead of default \
 let mapleader = ","
