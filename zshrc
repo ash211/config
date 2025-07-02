@@ -5,6 +5,8 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
+source /opt/homebrew/opt/powerlevel10k/share/powerlevel10k/powerlevel10k.zsh-theme
+
 # zi
 
 if [[ ! -f $HOME/.zi/bin/zi.zsh ]]; then
@@ -87,6 +89,41 @@ export FZF_BASE="$(dirname $(which fzf))"
 
 ####### Above this is from ashankar@ #########
 
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/opt/homebrew/Caskroom/miniconda/base/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/opt/homebrew/Caskroom/miniconda/base/etc/profile.d/conda.sh" ]; then
+        . "/opt/homebrew/Caskroom/miniconda/base/etc/profile.d/conda.sh"
+    else
+        export PATH="/opt/homebrew/Caskroom/miniconda/base/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+
+
+
+# Fix slow pastes, from https://gist.github.com/magicdude4eva/2d4748f8ef3e6bf7b1591964c201c1ab
+### Fix slowness of pastes with zsh-syntax-highlighting.zsh
+pasteinit() {
+  OLD_SELF_INSERT=${${(s.:.)widgets[self-insert]}[2,3]}
+  zle -N self-insert url-quote-magic # I wonder if you'd need `.url-quote-magic`?
+}
+
+pastefinish() {
+  zle -N self-insert $OLD_SELF_INSERT
+}
+zstyle :bracketed-paste-magic paste-init pasteinit
+zstyle :bracketed-paste-magic paste-finish pastefinish
+### Fix slowness of pastes
+
+
+
+
+########################
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
@@ -94,9 +131,9 @@ export NVM_DIR="$HOME/.nvm"
 
 alias gradle=gw
 export PATH="/usr/local/bin:${PATH}"
-export PATH="~/bin:${PATH}"
+export PATH="${HOME}/bin:${PATH}"
 export PATH="/opt/homebrew/bin:${PATH}"
-export PATH="~/.npm-global/bin:${PATH}"
+export PATH="${HOME}/.npm-global/bin:${PATH}"
 export PATH="/opt/homebrew/opt/gnu-sed/libexec/gnubin:${PATH}"
 export PATH="/opt/homebrew/sbin:${PATH}"
 
@@ -104,5 +141,14 @@ export JAVA_HOME=$("/usr/libexec/java_home" -v "17")
 
 alias ll='ls -l --color=auto'
 alias sign="git rebase --exec 'git commit --amend --no-edit -n -S' ${1:-origin/develop}"
+alias slslog="slslog --color"
+alias slsc="slslog --exclude=metric.1 --exclude=request.2"
+alias gti=git
+alias g=git
 
 export GOPATH=/Volumes/git/go
+
+# https://stackoverflow.com/questions/3483604/which-shortcut-in-zsh-does-the-same-as-ctrl-u-in-bash
+bindkey \^U backward-kill-line
+
+export EDITOR=vim
