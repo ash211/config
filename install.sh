@@ -44,5 +44,19 @@ else
     echo "~/.zshrc already exists... preserving."
 fi
 
+echo "Installing... ~/.profile"
+if [ ! -e ~/.profile ]; then
+    ln -s `pwd`/zprofile ~/.profile
+else
+    echo "~/.profile already exists... preserving."
+fi
+
+echo "Installing... ~/.p10k.zsh"
+if [ ! -e ~/.p10k.zsh ]; then
+    ln -s `pwd`/p10k.zsh ~/.p10k.zsh
+else
+    echo "~/.p10k.zsh already exists... preserving."
+fi
+
 echo "done."
 exit
