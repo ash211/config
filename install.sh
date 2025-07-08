@@ -58,5 +58,14 @@ else
     echo "~/.p10k.zsh already exists... preserving."
 fi
 
+echo "Installing... ~/bin/,pr-clear.sh"
+if [ ! -e ~/bin/,pr-clear.sh ]; then
+    mkdir -p ~/bin/
+    ln -s `pwd`/,pr-clear.sh ~/bin/,pr-clear.sh
+else
+    echo "~/bin/,pr-clear.sh already exists... preserving."
+fi
+
+
 echo "done."
 exit
