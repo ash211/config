@@ -1,0 +1,24 @@
+gradle.addBuildListener(new BuildAdapter() {
+
+    @Override
+    void buildFinished(BuildResult result) {
+        def projectName = gradle.rootProject.name
+        if (result.failure) {
+            def e = getExceptionParts(result)
+            ["osascript", "-e", "display notification \"${e.first} ${e.second}\" with title \"${projectName} build failed\""].execute()
+        } else {
+            if (projectName != "buildSrc") {
+                ["osascript", "-e", "display notification with title \"${projectName} build successful\""].execute()
+            }
+        }
+    }
+
+    private Tuple2<String, String> getExceptionParts(BuildResult result) {
+        def exception = result.failure
+        if (exception.cause != null) {
+            exception = exception.cause
+        }
+        def className = exception.class.simpleName
+        new Tuple2<String, String>(className, exception.message)
+    }
+})

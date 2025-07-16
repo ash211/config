@@ -1,0 +1,13 @@
+initscript {
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        classpath group: 'fr.jcgay', name: 'gradle-notifier', version: '3.0.0'
+    }
+}
+
+rootProject {
+    apply plugin: fr.jcgay.gradle.notifier.GradleNotifierPlugin
+}
