@@ -66,6 +66,19 @@ else
     echo "~/bin/,pr-clear.sh already exists... preserving."
 fi
 
+echo "Installing... ~/.gradle/init.d/ files"
+if [ ! -d ~/.gradle/init.d ]; then
+    mkdir -p ~/.gradle/init.d
+fi
+for file in gradle-init.d/*.gradle; do
+    filename=$(basename "$file")
+    if [ ! -e ~/.gradle/init.d/"$filename" ]; then
+        ln -s `pwd`/"$file" ~/.gradle/init.d/"$filename"
+        echo "Installed ~/.gradle/init.d/$filename"
+    else
+        echo "~/.gradle/init.d/$filename already exists... preserving."
+    fi
+done
 
 echo "done."
 exit
